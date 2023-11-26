@@ -6,7 +6,6 @@ from PIL import Image, ImageTk
 import customtkinter as ctk
 import numpy as np
 import cv2
-import pencilsketch as psk
 import colour_pencil as cpsk
 
 root=ctk.CTk()
@@ -15,7 +14,6 @@ ctk.set_default_color_theme("dark-blue")
 root.geometry("800x800")
 root.title("Image to Sketch")
 my_font1=('Constantia', 18)
-
 
 def upload():
     global panelA, panelB, image
@@ -32,16 +30,11 @@ def upload():
     panelA = Label(master=mainbar,image=image1, borderwidth=5, relief="sunken")
     panelA.image = image1
     panelA.grid(row= 3, column=2 , padx=20, pady=20)
-    
+    text= ctk.CTkLabel(mainbar,text='Original Image', font=my_font1)
+    text.grid(row= 4, column=2, padx=20, pady=20)
     return image
 
-def pencil():
-    gpsk= psk.sketch(image)
-    pencil= Image.fromarray(gpsk)
-    pencil= ImageTk.PhotoImage(pencil)
-    panelB = Label(master=mainbar,image=pencil, borderwidth=5, relief="sunken")
-    panelB.image = pencil
-    panelB.grid(row= 3, column=4 , rowspan= 13,columnspan= 3, padx=20, pady=20)
+
 
 def colourpencil():
     cps= cpsk.colour_sketch(image)
@@ -49,16 +42,18 @@ def colourpencil():
     pencil= ImageTk.PhotoImage(pencil)
     panelB = Label(master=mainbar,image=pencil, borderwidth=5, relief="sunken")
     panelB.image = pencil
-    panelB.grid(row= 3, column=4 , rowspan= 13,columnspan= 3, padx=20, pady=20)
+    panelB.grid(row= 3, column=4 , padx=20, pady=20)
+    text= ctk.CTkLabel(mainbar,text='Colour Pencil Sketch', font=my_font1,fg_color="#262626")
+    text.grid(row= 4, column=4 , padx=20, pady=20)
 
 
 
 mainbar=ctk.CTkScrollableFrame(master=root, width=700, orientation="horizontal")
 l1 = ctk.CTkLabel(mainbar,text='Upload Files & display',width=30,font=my_font1)  
-l1.grid(row=1,column=2,columnspan=4,sticky="nsew",padx=10, pady=5)
+l1.grid(row=1,column=0,sticky="nsew",padx=10, pady=5)
 #icon = PhotoImage(file=r"C:\Users\ROSHNI\OneDrive\Pictures\upload_icon.png")
-b1 = ctk.CTkButton(mainbar, text='Upload', width=20,command =upload)
-b1.grid(row=2,column=1,columnspan=4,sticky="nsew",padx=10, pady=5)
+b1 = ctk.CTkButton(mainbar, text='Upload', width=50,command =upload)
+b1.grid(row=2,column=0,sticky="nsew",padx=10, pady=5)
 
 
 sidebar=ctk.CTkFrame(master=root, width=100)
@@ -67,8 +62,8 @@ def side():
     sidebar.grid_columnconfigure(0, weight=1)
     intro=ctk.CTkLabel(sidebar, text="Image to Sketch", font=('Constantia', 18, 'bold'))
     intro.grid(row=0,column=0, padx=10, pady=5, sticky="nsew")
-    pencil_button=ctk.CTkButton(sidebar, text='Pencil Sketch',command = pencil)
-    pencil_button.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
+    #pencil_button=ctk.CTkButton(sidebar, text='Pencil Sketch',command = pencil)
+    #pencil_button.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
     colour_button=ctk.CTkButton(sidebar, text='Colour Pencil Sketch',command = colourpencil)
     colour_button.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
 
