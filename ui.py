@@ -7,6 +7,8 @@ import customtkinter as ctk
 import numpy as np
 import cv2
 import colour_pencil as cpsk
+import random
+import pencil_sketch as psk
 
 root=ctk.CTk()
 ctk.set_appearance_mode("Dark")
@@ -17,15 +19,17 @@ my_font1=('Constantia', 18)
 is_enabled=False
 image = None
 colour_button = None
+#pencil_button= None
 
 def upload():
-    global panelA, panelB, image
+    global panelA, panelB, image, pencil_button
     f_types = [('Jpg Files', '*.jpg'),('PNG Files','*.png')] 
     path = filedialog.askopenfilename(filetypes=f_types)
 
     is_enabled = True
     
-    image = cv2.imread(path) 
+    image = cv2.imread(path) #reads image from path and converts to an array
+    
     image = cv2.resize(image, (500,500))
 
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -40,22 +44,30 @@ def upload():
     text.grid(row= 4, column=2, padx=20, pady=20)
 
     colour_button.configure(state="normal")
+    #pencil_button.configure(state="normal")
 
     return image
 
 
 
 def colourpencil():
-    if image is None:
-        print("Upload an image")
-        return
     cps= cpsk.colour_sketch(image)
     pencil= Image.fromarray(cps)
     pencil= ImageTk.PhotoImage(pencil)
     panelB = Label(master=mainbar,image=pencil, borderwidth=5, relief="sunken")
     panelB.image = pencil
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
-    text= ctk.CTkLabel(mainbar,text='Colour Pencil Sketch', font=my_font1,fg_color="#262626")
+    text= ctk.CTkLabel(mainbar,text='Colour Pencil Sketch', font=my_font1,fg_color="#262626",)
+    text.grid(row= 4, column=4 , padx=20, pady=20)
+
+def pencil():
+    ps= psk.pencil(image)
+    pencil= Image.fromarray(ps)
+    pencil= ImageTk.PhotoImage(pencil)
+    panelB = Label(master=mainbar,image=pencil, borderwidth=5, relief="sunken")
+    panelB.image = pencil
+    panelB.grid(row= 3, column=4 , padx=20, pady=20)
+    text= ctk.CTkLabel(mainbar,text='Pencil Sketch', font=my_font1,fg_color="#262626")
     text.grid(row= 4, column=4 , padx=20, pady=20)
 
 
@@ -75,30 +87,21 @@ def side():
     sidebar.grid_columnconfigure(0, weight=1)
     intro=ctk.CTkLabel(sidebar, text="Image to Sketch", font=('Constantia', 18, 'bold'))
     intro.grid(row=0,column=0, padx=10, pady=5, sticky="nsew")
-    #pencil_button=ctk.CTkButton(sidebar, text='Pencil Sketch',command = pencil)
-    #pencil_button.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
+    pencil_button=ctk.CTkButton(sidebar, text='Pencil Sketch',command = pencil)
     colour_button=ctk.CTkButton(sidebar, text='Colour Pencil Sketch', command = colourpencil)
     print(is_enabled)
     if is_enabled:
         colour_button.configure(state="normal")
+        #pencil_button.configure(state="normal")
     else:
         colour_button.configure(state="disabled")
+        #pencil_button.configure(state="disabled")
     colour_button.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
+    pencil_button.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
 
 side()
 sidebar.pack(side=tk.LEFT,fill='both',expand=True, padx=5, pady=5)
 
-'''org_img= cv2.imdecode(np.fromstring(filename.read(), np.uint8), 1)
-
-def pencil1():
-    global org_img
-    res=art.sketch(org_img)
-    res_img=Image.fromarray(org_img)
-    res_img=ImageTk.PhotoImage(res_img)
-    e2 =tk.Label(mainbar)
-    e2.grid(row=3,column=3)
-    e2.image = res_img # keep a reference! by attaching it to a widget attribute
-    e2['image']=res_img # Show Image'''
 
 mainbar.pack(side=tk.LEFT,fill='both',expand=True, padx=10,pady=5)
 
