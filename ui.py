@@ -19,10 +19,10 @@ my_font1=('Constantia', 18)
 is_enabled=False
 image = None
 colour_button = None
-#pencil_button= None
+pencil_button= None
 
 def upload():
-    global panelA, panelB, image, pencil_button
+    global panelA, panelB, image, colour_button, pencil_button
     f_types = [('Jpg Files', '*.jpg'),('PNG Files','*.png')] 
     path = filedialog.askopenfilename(filetypes=f_types)
 
@@ -44,7 +44,7 @@ def upload():
     text.grid(row= 4, column=2, padx=20, pady=20)
 
     colour_button.configure(state="normal")
-    #pencil_button.configure(state="normal")
+    pencil_button.configure(state="normal")
 
     return image
 
@@ -83,7 +83,7 @@ b1.grid(row=2,column=0,sticky="nsew",padx=10, pady=5)
 sidebar=ctk.CTkFrame(master=root, width=100)
 
 def side():
-    global colour_button
+    global colour_button, pencil_button
     sidebar.grid_columnconfigure(0, weight=1)
     intro=ctk.CTkLabel(sidebar, text="Image to Sketch", font=('Constantia', 18, 'bold'))
     intro.grid(row=0,column=0, padx=10, pady=5, sticky="nsew")
@@ -92,10 +92,10 @@ def side():
     print(is_enabled)
     if is_enabled:
         colour_button.configure(state="normal")
-        #pencil_button.configure(state="normal")
+        pencil_button.configure(state="normal")
     else:
         colour_button.configure(state="disabled")
-        #pencil_button.configure(state="disabled")
+        pencil_button.configure(state="disabled")
     colour_button.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
     pencil_button.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
 
