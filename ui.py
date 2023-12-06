@@ -9,6 +9,8 @@ import cv2
 import colour_pencil as cpsk
 import random
 import pencil_sketch as psk
+import Textured_sketch as tsk
+
 
 root=ctk.CTk()
 ctk.set_appearance_mode("Dark")
@@ -70,12 +72,29 @@ def pencil():
     text= ctk.CTkLabel(mainbar,text='Pencil Sketch', font=my_font1,fg_color="#262626")
     text.grid(row= 4, column=4 , padx=20, pady=20)
 
+def texturedpencil():
+    ts=tsk.texturedpencil(image)
+    texture=Image.fromarray(ts)
+    texture=ImageTk.PhotoImage(texture)
+    panelB = Label(master=mainbar,image=texture,borderwidth=5,relief="sunken")
+    panelB.image = texture
+    panelB.grid(row=3,column=4,padx=20,pady=20)
+    text=ctk.CTkLabel(mainbar,text="Textured Sketch",font=my_font1,fg_color="#262626")
+    text.grid(row=4,column=4,padx=20,pady=20)
 
+def pick():
+    sketch_list=[colourpencil, pencil]
+    option= random.choice(sketch_list)
+    if option==colourpencil:
+        colourpencil()
+    elif option==pencil:
+        pencil()
+    
+    
 
 mainbar=ctk.CTkScrollableFrame(master=root, width=700, orientation="horizontal")
 l1 = ctk.CTkLabel(mainbar,text='Upload Files & display',width=30,font=my_font1)  
 l1.grid(row=1,column=0,sticky="nsew",padx=10, pady=5)
-#icon = PhotoImage(file=r"C:\Users\ROSHNI\OneDrive\Pictures\upload_icon.png")
 b1 = ctk.CTkButton(mainbar, text='Upload', width=50,command =upload)
 b1.grid(row=2,column=0,sticky="nsew",padx=10, pady=5)
 
@@ -89,6 +108,8 @@ def side():
     intro.grid(row=0,column=0, padx=10, pady=5, sticky="nsew")
     pencil_button=ctk.CTkButton(sidebar, text='Pencil Sketch',command = pencil)
     colour_button=ctk.CTkButton(sidebar, text='Colour Pencil Sketch', command = colourpencil)
+    textured_button=ctk.CTkButton(sidebar,text='Textured Pencil Sketch',command=texturedpencil)
+    pick_for_me=ctk.CTkButton(sidebar, text='Pick for me!', command = pick)
     print(is_enabled)
     if is_enabled:
         colour_button.configure(state="normal")
@@ -98,6 +119,8 @@ def side():
         pencil_button.configure(state="disabled")
     colour_button.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
     pencil_button.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
+    textured_button.grid(row=3,column=0, padx=20, pady=20, sticky="nsew")
+    pick_for_me.grid(row=5, column=0, padx=20, pady=20, sticky="nsew")
 
 side()
 sidebar.pack(side=tk.LEFT,fill='both',expand=True, padx=5, pady=5)
