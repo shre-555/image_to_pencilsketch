@@ -16,6 +16,6 @@ def dodge(front, back):
 def pencil(img):
     gray = rgb2gray(img)
     i = 255-gray
-    blur = scipy.ndimage.filters.gaussian_filter(i, sigma=13)
+    blur = scipy.ndimage.filters.gaussian_filter(i, sigma=18)
     r = dodge(blur, gray)
     return r
