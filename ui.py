@@ -10,6 +10,7 @@ import colour_pencil as cpsk
 import random
 import pencil_sketch as psk
 import Textured_sketch as tsk
+import watercolor as wat
 
 
 root=ctk.CTk()
@@ -25,11 +26,12 @@ image = None
 colour_button = None
 pencil_button= None
 textured_button= None
+watercolor_button = None
 pick_for_me= None
 final_img= None
 
 def upload():
-    global panelA, panelB, image, colour_button, pencil_button
+    global panelA, panelB, image, colour_button, pencil_button, watercolor_button
     f_types = [('Jpg Files', '*.jpg'),('PNG Files','*.png')] 
     path = filedialog.askopenfilename(filetypes=f_types)
 
@@ -53,6 +55,7 @@ def upload():
     colour_button.configure(state="normal")
     pencil_button.configure(state="normal")
     textured_button.configure(state="normal")
+    watercolor_button.configure(state="normal")
     pick_for_me.configure(state="normal")
 
     return image
@@ -98,8 +101,21 @@ def texturedpencil():
     download_button=ctk.CTkButton(mainbar, text='Download', command = downloading)
     download_button.grid(row= 5, column=4 , padx=20, pady=20, sticky="nsew")
 
+def watercolor():
+    global final_img
+    wcolor= wat.oil_sketch(image)
+    final_img= Image.fromarray(wcolor)
+    final_img1= ImageTk.PhotoImage(final_img)
+    panelB = Label(master=mainbar,image=final_img1, borderwidth=5, relief="sunken")
+    panelB.image = final_img1
+    panelB.grid(row= 3, column=4 , padx=20, pady=20)
+    text= ctk.CTkLabel(mainbar,text='Watercolor', font=my_font1,fg_color="#212121",width=300)
+    text.grid(row= 4, column=4 , padx=20, pady=20)
+    download_button=ctk.CTkButton(mainbar, text='Download', command = downloading)
+    download_button.grid(row= 5, column=4 , padx=20, pady=20, sticky="nsew")
+
 def pick():
-    sketch_list=[colourpencil, pencil, texturedpencil]
+    sketch_list=[colourpencil, pencil, texturedpencil, watercolor]
     option= random.choice(sketch_list)
     if option==colourpencil:
         colourpencil()
@@ -107,6 +123,8 @@ def pick():
         pencil()
     elif option==texturedpencil:
         texturedpencil()
+    elif option==watercolor:
+        watercolor()
 
 def downloading():
     global final_img
@@ -126,7 +144,7 @@ b1.grid(row=2,column=0, pady=5,sticky="n")
 sidebar=ctk.CTkFrame(master=root, width=300)
 
 def side():
-    global colour_button, pencil_button, textured_button , pick_for_me
+    global colour_button, pencil_button, textured_button ,watercolor_button, pick_for_me
     sidebar.grid_columnconfigure(0, weight=1)
     leaveline=ctk.CTkLabel(sidebar, text=" ")
     leaveline.grid(row=0,column=0, padx=10, pady=20, sticky="nsew")
@@ -135,22 +153,26 @@ def side():
     pencil_button=ctk.CTkButton(sidebar, text='Pencil Sketch',command = pencil)
     colour_button=ctk.CTkButton(sidebar, text='Colour Pencil Sketch', command = colourpencil)
     textured_button=ctk.CTkButton(sidebar,text='Textured Pencil Sketch',command=texturedpencil)
+    watercolor_button=ctk.CTkButton(sidebar,text='Watercolor painting',command=watercolor)
     pick_for_me=ctk.CTkButton(sidebar, text='Pick for me!', command = pick)
     if is_enabled:
         colour_button.configure(state="normal")
         pencil_button.configure(state="normal")
         textured_button.configure(state="normal")
+        watercolor_button.configure(state="normal")
         pick_for_me.configure(state="normal")
     else:
         colour_button.configure(state="disabled")
         pencil_button.configure(state="disabled")
         textured_button.configure(state="disabled")
+        watercolor_button.configure(state="disabled")
         pick_for_me.configure(state="disabled")
 
     colour_button.grid(row=3, column=0, padx=20, pady=20, sticky="nsew")
     pencil_button.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
     textured_button.grid(row=4,column=0, padx=20, pady=20, sticky="nsew")
-    pick_for_me.grid(row=6, column=0, padx=20, pady=20, sticky="nsew")
+    watercolor_button.grid(row=5,column=0, padx=20, pady=20, sticky="nsew")
+    pick_for_me.grid(row=7, column=0, padx=20, pady=20, sticky="nsew")
 
 side()
 sidebar.pack(side=tk.LEFT,fill='both', padx=5, pady=5)
