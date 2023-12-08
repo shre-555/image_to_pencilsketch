@@ -15,7 +15,7 @@ import watercolor as wat
 root=ctk.CTk()
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("dark-blue")
-root.geometry("800x800")
+root.geometry("1200x800")
 root.title("Image to Sketch")
 my_font1=('Constantia', 18)
 
