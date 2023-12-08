@@ -23,6 +23,7 @@ image = None
 colour_button = None
 pencil_button= None
 textured_button= None
+pick_for_me= None
 
 def upload():
     global panelA, panelB, image, colour_button, pencil_button
@@ -49,7 +50,7 @@ def upload():
     colour_button.configure(state="normal")
     pencil_button.configure(state="normal")
     textured_button.configure(state="normal")
-
+    pick_for_me.configure(state="normal")
 
     return image
 
@@ -107,7 +108,7 @@ b1.grid(row=2,column=0,sticky="nsew",padx=10, pady=5)
 sidebar=ctk.CTkFrame(master=root, width=100)
 
 def side():
-    global colour_button, pencil_button, textured_button
+    global colour_button, pencil_button, textured_button , pick_for_me
     sidebar.grid_columnconfigure(0, weight=1)
     intro=ctk.CTkLabel(sidebar, text="Image to Sketch", font=('Constantia', 18, 'bold'))
     intro.grid(row=0,column=0, padx=10, pady=5, sticky="nsew")
