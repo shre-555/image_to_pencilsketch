@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import *
-from tkinter import filedialog #filedialog is submodule containing skopenfile
+from tkinter import filedialog #filedialog is submodule containing tkopenfile
 from tkinter.filedialog import askopenfile 
 from PIL import Image, ImageTk
 import customtkinter as ctk
@@ -18,13 +18,15 @@ ctk.set_default_color_theme("dark-blue")
 root.geometry("800x800")
 root.title("Image to Sketch")
 my_font1=('Constantia', 18)
+
+
 is_enabled=False
 image = None
 colour_button = None
 pencil_button= None
 textured_button= None
 pick_for_me= None
-text=""
+final_img= None
 
 def upload():
     global panelA, panelB, image, colour_button, pencil_button
@@ -58,34 +60,43 @@ def upload():
 
 
 def colourpencil():
+    global final_img
     cps= cpsk.colour_sketch(image)
-    pencil= Image.fromarray(cps)
-    pencil= ImageTk.PhotoImage(pencil)
-    panelB = Label(master=mainbar,image=pencil, borderwidth=5, relief="sunken")
-    panelB.image = pencil
+    final_img= Image.fromarray(cps)
+    final_img1= ImageTk.PhotoImage(final_img)
+    panelB = Label(master=mainbar,image=final_img1, borderwidth=5, relief="sunken")
+    panelB.image = final_img1
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
     text= ctk.CTkLabel(mainbar,text='Colour Pencil Sketch', font=my_font1,fg_color="#212121",width=300)
     text.grid(row= 4, column=4 , padx=20, pady=20)
+    download_button=ctk.CTkButton(mainbar, text='Download', command = downloading)
+    download_button.grid(row= 5, column=4 , padx=20, pady=20, sticky="nsew")
 
 def pencil():
+    global final_img
     ps= psk.pencil(image)
-    pencil= Image.fromarray(ps)
-    pencil= ImageTk.PhotoImage(pencil)
-    panelB = Label(master=mainbar,image=pencil, borderwidth=5, relief="sunken")
-    panelB.image = pencil
+    final_img= Image.fromarray(ps)
+    final_img1= ImageTk.PhotoImage(final_img)
+    panelB = Label(master=mainbar,image=final_img1, borderwidth=5, relief="sunken")
+    panelB.image = final_img1
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
     text= ctk.CTkLabel(mainbar,text='Pencil Sketch', font=my_font1,fg_color="#212121", width=300)
     text.grid(row= 4, column=4 , padx=20, pady=20)
+    download_button=ctk.CTkButton(mainbar, text='Download', command = downloading)
+    download_button.grid(row= 5, column=4 , padx=20, pady=20, sticky="nsew")
 
 def texturedpencil():
+    global final_img
     ts=tsk.texturedpencil(image)
-    texture=Image.fromarray(ts)
-    texture=ImageTk.PhotoImage(texture)
-    panelB = Label(master=mainbar,image=texture,borderwidth=5,relief="sunken")
-    panelB.image = texture
+    final_img=Image.fromarray(ts)
+    final_img1=ImageTk.PhotoImage(final_img)
+    panelB = Label(master=mainbar,image=final_img1,borderwidth=5,relief="sunken")
+    panelB.image = final_img1
     panelB.grid(row=3,column=4,padx=20,pady=20)
     text=ctk.CTkLabel(mainbar,text="Textured Sketch",font=my_font1,fg_color="#212121",width=300)
     text.grid(row=4,column=4,padx=20,pady=20)
+    download_button=ctk.CTkButton(mainbar, text='Download', command = downloading)
+    download_button.grid(row= 5, column=4 , padx=20, pady=20, sticky="nsew")
 
 def pick():
     sketch_list=[colourpencil, pencil, texturedpencil]
@@ -96,7 +107,13 @@ def pick():
         pencil()
     elif option==texturedpencil:
         texturedpencil()
-    
+
+def downloading():
+    global final_img
+    save_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png"), ('Jpg Files', '*.jpg'),("All files", "*.*")])
+    if save_path:
+            final_img.save(save_path)
+            tk.messagebox.showinfo("Save Complete", f"Image saved successfully at:\n{save_path}")
     
 
 mainbar=ctk.CTkScrollableFrame(master=root, width=700, orientation="horizontal")
@@ -117,7 +134,6 @@ def side():
     colour_button=ctk.CTkButton(sidebar, text='Colour Pencil Sketch', command = colourpencil)
     textured_button=ctk.CTkButton(sidebar,text='Textured Pencil Sketch',command=texturedpencil)
     pick_for_me=ctk.CTkButton(sidebar, text='Pick for me!', command = pick)
-    print(is_enabled)
     if is_enabled:
         colour_button.configure(state="normal")
         pencil_button.configure(state="normal")
