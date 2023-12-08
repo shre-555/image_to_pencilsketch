@@ -1,6 +1,6 @@
 import numpy as np
 import imageio
-import scripy.ndimage
+import scipy.ndimage
 import cv2
 import matplotlib.pyplot as plt
 

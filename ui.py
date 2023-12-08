@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import *
-from tkinter import filedialog
-from tkinter.filedialog import askopenfile
+from tkinter import filedialog #filedialog is submodule containing skopenfile
+from tkinter.filedialog import askopenfile 
 from PIL import Image, ImageTk
 import customtkinter as ctk
 import numpy as np
@@ -24,6 +24,7 @@ colour_button = None
 pencil_button= None
 textured_button= None
 pick_for_me= None
+text=""
 
 def upload():
     global panelA, panelB, image, colour_button, pencil_button
@@ -63,7 +64,7 @@ def colourpencil():
     panelB = Label(master=mainbar,image=pencil, borderwidth=5, relief="sunken")
     panelB.image = pencil
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
-    text= ctk.CTkLabel(mainbar,text='Colour Pencil Sketch', font=my_font1,fg_color="#262626",)
+    text= ctk.CTkLabel(mainbar,text='Colour Pencil Sketch', font=my_font1,fg_color="#212121",width=300)
     text.grid(row= 4, column=4 , padx=20, pady=20)
 
 def pencil():
@@ -73,7 +74,7 @@ def pencil():
     panelB = Label(master=mainbar,image=pencil, borderwidth=5, relief="sunken")
     panelB.image = pencil
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
-    text= ctk.CTkLabel(mainbar,text='Pencil Sketch', font=my_font1,fg_color="#262626")
+    text= ctk.CTkLabel(mainbar,text='Pencil Sketch', font=my_font1,fg_color="#212121", width=300)
     text.grid(row= 4, column=4 , padx=20, pady=20)
 
 def texturedpencil():
@@ -83,7 +84,7 @@ def texturedpencil():
     panelB = Label(master=mainbar,image=texture,borderwidth=5,relief="sunken")
     panelB.image = texture
     panelB.grid(row=3,column=4,padx=20,pady=20)
-    text=ctk.CTkLabel(mainbar,text="Textured Sketch",font=my_font1,fg_color="#262626")
+    text=ctk.CTkLabel(mainbar,text="Textured Sketch",font=my_font1,fg_color="#212121",width=300)
     text.grid(row=4,column=4,padx=20,pady=20)
 
 def pick():
