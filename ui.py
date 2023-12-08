@@ -12,7 +12,6 @@ import pencil_sketch as psk
 import Textured_sketch as tsk
 import watercolor as wat
 
-
 root=ctk.CTk()
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("dark-blue")
