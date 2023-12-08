@@ -46,9 +46,9 @@ def upload():
 
     panelA = Label(master=mainbar,image=image1, borderwidth=5, relief="sunken")
     panelA.image = image1
-    panelA.grid(row= 3, column=2 , padx=20, pady=20)
+    panelA.grid(row= 3, column=0 , padx=20, pady=20)
     text= ctk.CTkLabel(mainbar,text='Original Image', font=my_font1)
-    text.grid(row= 4, column=2, padx=20, pady=20)
+    text.grid(row= 4, column=0, padx=20, pady=20)
 
     colour_button.configure(state="normal")
     pencil_button.configure(state="normal")
@@ -117,19 +117,21 @@ def downloading():
     
 
 mainbar=ctk.CTkScrollableFrame(master=root, width=700, orientation="horizontal")
-l1 = ctk.CTkLabel(mainbar,text='Upload Files & display',width=30,font=my_font1)  
-l1.grid(row=1,column=0,sticky="nsew",padx=10, pady=5)
-b1 = ctk.CTkButton(mainbar, text='Upload', width=50,command =upload)
-b1.grid(row=2,column=0,sticky="nsew",padx=10, pady=5)
+l1 = ctk.CTkLabel(mainbar,text='Image to Sketch Converter',width=30,font=('Constantia', 30, 'bold'))  
+l1.grid(row=1,column=0,sticky="nsew",padx=10, pady=30)
+b1 = ctk.CTkButton(mainbar, text='Upload', width=300,command =upload)
+b1.grid(row=2,column=0, pady=5,sticky="n")
 
 
-sidebar=ctk.CTkFrame(master=root, width=100)
+sidebar=ctk.CTkFrame(master=root, width=300)
 
 def side():
     global colour_button, pencil_button, textured_button , pick_for_me
     sidebar.grid_columnconfigure(0, weight=1)
-    intro=ctk.CTkLabel(sidebar, text="Image to Sketch", font=('Constantia', 18, 'bold'))
-    intro.grid(row=0,column=0, padx=10, pady=5, sticky="nsew")
+    leaveline=ctk.CTkLabel(sidebar, text=" ")
+    leaveline.grid(row=0,column=0, padx=10, pady=20, sticky="nsew")
+    intro=ctk.CTkLabel(sidebar, text="Options", font=('Constantia', 18))
+    intro.grid(row=1,column=0, padx=10, pady=5, sticky="nsew")
     pencil_button=ctk.CTkButton(sidebar, text='Pencil Sketch',command = pencil)
     colour_button=ctk.CTkButton(sidebar, text='Colour Pencil Sketch', command = colourpencil)
     textured_button=ctk.CTkButton(sidebar,text='Textured Pencil Sketch',command=texturedpencil)
@@ -145,13 +147,13 @@ def side():
         textured_button.configure(state="disabled")
         pick_for_me.configure(state="disabled")
 
-    colour_button.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
-    pencil_button.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
-    textured_button.grid(row=3,column=0, padx=20, pady=20, sticky="nsew")
-    pick_for_me.grid(row=5, column=0, padx=20, pady=20, sticky="nsew")
+    colour_button.grid(row=3, column=0, padx=20, pady=20, sticky="nsew")
+    pencil_button.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
+    textured_button.grid(row=4,column=0, padx=20, pady=20, sticky="nsew")
+    pick_for_me.grid(row=6, column=0, padx=20, pady=20, sticky="nsew")
 
 side()
-sidebar.pack(side=tk.LEFT,fill='both',expand=True, padx=5, pady=5)
+sidebar.pack(side=tk.LEFT,fill='both', padx=5, pady=5)
 
 
 mainbar.pack(side=tk.LEFT,fill='both',expand=True, padx=10,pady=5)
