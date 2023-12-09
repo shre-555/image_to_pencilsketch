@@ -11,6 +11,7 @@ import random
 import pencil_sketch as psk
 import Textured_sketch as tsk
 import watercolor as wat
+import Enhancement as en
 
 
 root=ctk.CTk()
