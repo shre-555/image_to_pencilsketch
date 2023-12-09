@@ -1,36 +1,65 @@
-from PIL import Image, ImageEnhance, ImageFilter
+from PIL import Image 
+from PIL import ImageEnhance 
+ 
+def pencil_enhancement(img):  
+ 
+    curr_sharp = ImageEnhance.Sharpness(img) 
+    new_sharp = 6
+    img_sharped = curr_sharp.enhance(new_sharp)
+    curr_con = ImageEnhance.Contrast(img_sharped) 
+    new_con = 2.5
+    img_contrasted = curr_con.enhance(new_con) 
+    curr_bright = ImageEnhance.Brightness(img_contrasted)
+    new_bright = 0.8
+    img_bright = curr_bright.enhance(new_bright)
+    curr_color = ImageEnhance.Color(img_bright)
+    new_color = 1
+    img_enhanced = curr_color.enhance(new_color)
 
-def enhance_contrast(image, contrast_factor=1.2):
-    enhancer = ImageEnhance.Contrast(image)
-    enhanced_image = enhancer.enhance(contrast_factor)
-    return enhanced_image
+    return img_enhanced
 
-def enhance_brightness(image, brightness_factor=1.2):
-    enhancer = ImageEnhance.Brightness(image)
-    enhanced_image = enhancer.enhance(brightness_factor)
-    return enhanced_image
 
-def enhance_sharpness(image, sharpness_factor=2.0):
+def color_enhancement(img):  
+ 
+    curr_sharp = ImageEnhance.Sharpness(img) 
+    new_sharp = 4.5
+    img_sharped = curr_sharp.enhance(new_sharp)
+    curr_con = ImageEnhance.Contrast(img_sharped) 
+    new_con = 5
+    img_contrasted = curr_con.enhance(new_con) 
+    curr_bright = ImageEnhance.Brightness(img_contrasted)
+    new_bright = 0.8
+    img_bright = curr_bright.enhance(new_bright)
+    curr_color = ImageEnhance.Color(img_bright)
+    new_color = 1.5
+    img_enhanced = curr_color.enhance(new_color)
 
-    enhancer = ImageEnhance.Sharpness(image)
-    enhanced_image = enhancer.enhance(sharpness_factor)
-    return enhanced_image
+    return img_enhanced
 
-def enhance_image(image, contrast_factor=1.2, brightness_factor=1.2, sharpness_factor=2.0):
+def texture_enhancement(img):  
+ 
+    curr_sharp = ImageEnhance.Sharpness(img) 
+    new_sharp = 3
+    img_sharped = curr_sharp.enhance(new_sharp)
+    curr_con = ImageEnhance.Contrast(img_sharped) 
+    new_con = 1.5
+    img_contrasted = curr_con.enhance(new_con) 
+    curr_bright = ImageEnhance.Brightness(img_contrasted)
+    new_bright = 1.7
+    img_bright = curr_bright.enhance(new_bright)
+    curr_color = ImageEnhance.Color(img_bright)
+    new_color = 1.5
+    img_enhanced = curr_color.enhance(new_color)
 
-    enhanced_image = enhance_contrast(image, contrast_factor)
+    return img_enhanced
 
-    enhanced_image = enhance_brightness(enhanced_image, brightness_factor)
+def watercolor_enhancement(img):  
+ 
+    curr_sharp = ImageEnhance.Sharpness(img) 
+    new_sharp = 1.1
+    img_sharped = curr_sharp.enhance(new_sharp)
+    curr_con = ImageEnhance.Contrast(img_sharped) 
+    new_con = 1.1
+    img_contrasted = curr_con.enhance(new_con) 
 
-    enhanced_image = enhance_sharpness(enhanced_image, sharpness_factor)
-
-    return enhanced_image
-
-image_path = image
-
-input_image = Image.open(image_path)
-
-enhanced_image = enhance_image(input_image)
-
-return image
-# enhanced_image.show()
+    return img_contrasted
