@@ -19,7 +19,7 @@ def pencil_enhancement(img):
     return img_enhanced
 
 
-def color_enhancement(img):  
+def colour_enhancement(img):  
  
     curr_sharp = ImageEnhance.Sharpness(img) 
     new_sharp = 4.5
@@ -53,7 +53,7 @@ def texture_enhancement(img):
 
     return img_enhanced
 
-def watercolor_enhancement(img):  
+def water_enhancement(img):  
  
     curr_sharp = ImageEnhance.Sharpness(img) 
     new_sharp = 1.1
