@@ -12,6 +12,7 @@ import pencil_sketch as psk
 import Textured_sketch as tsk
 import watercolor as wat
 
+
 root=ctk.CTk()
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("dark-blue")
@@ -64,7 +65,8 @@ def upload():
 def colourpencil():
     global final_img
     cps= cpsk.colour_sketch(image)
-    final_img= Image.fromarray(cps)
+    final_im= Image.fromarray(cps)
+    final_img = en.colour_enhancement(final_im)
     final_img1= ImageTk.PhotoImage(final_img)
     panelB = Label(master=mainbar,image=final_img1, borderwidth=5, relief="sunken")
     panelB.image = final_img1
@@ -77,7 +79,8 @@ def colourpencil():
 def pencil():
     global final_img
     ps= psk.pencil(image)
-    final_img= Image.fromarray(ps)
+    final_im= Image.fromarray(ps)
+    final_img= en.pencil_enhancement(final_im)
     final_img1= ImageTk.PhotoImage(final_img)
     panelB = Label(master=mainbar,image=final_img1, borderwidth=5, relief="sunken")
     panelB.image = final_img1
@@ -90,7 +93,8 @@ def pencil():
 def texturedpencil():
     global final_img
     ts=tsk.texturedpencil(image)
-    final_img=Image.fromarray(ts)
+    final_im=Image.fromarray(ts)
+    final_img = en.texture_enhancement(final_im)
     final_img1=ImageTk.PhotoImage(final_img)
     panelB = Label(master=mainbar,image=final_img1,borderwidth=5,relief="sunken")
     panelB.image = final_img1
@@ -103,7 +107,8 @@ def texturedpencil():
 def watercolor():
     global final_img
     wcolor= wat.oil_sketch(image)
-    final_img= Image.fromarray(wcolor)
+    final_im= Image.fromarray(wcolor)
+    final_img = en.water_enhancement(final_im)
     final_img1= ImageTk.PhotoImage(final_img)
     panelB = Label(master=mainbar,image=final_img1, borderwidth=5, relief="sunken")
     panelB.image = final_img1
