@@ -67,16 +67,13 @@ def colourpencil():
     global final_img
     cps= cpsk.colour_sketch(image)
     final_img= Image.fromarray(cps)
-    # final_img = en.colour_enhancement(final_im)
-    #final_img= Image.fromarray(cps)
     final_img1= ImageTk.PhotoImage(final_img)
     panelB = Label(master=mainbar,image=final_img1, borderwidth=5, relief="sunken")
     panelB.image = final_img1
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
     def enhanced():
-        cps = cpsk.colour_sketch(image)
-        final_im = Image.fromarray(cps)
-        final_img = en.colour_enhancement(final_im)
+        global final_img
+        final_img = en.colour_enhancement(final_img)
         final_img1 = ImageTk.PhotoImage(final_img)
         panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
         panelC.image = final_img1
@@ -92,15 +89,13 @@ def pencil():
     global final_img
     ps= psk.pencil(image)
     final_img= Image.fromarray(ps)
-    # final_img= en.pencil_enhancement(final_im)
     final_img1= ImageTk.PhotoImage(final_img)
     panelB = Label(master=mainbar,image=final_img1, borderwidth=5, relief="sunken")
     panelB.image = final_img1
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
     def enhanced():
-        ps = psk.pencil(image)
-        final_im = Image.fromarray(ps)
-        final_img = en.pencil_enhancement(final_im)
+        global final_img
+        final_img = en.pencil_enhancement(final_img)
         final_img1 = ImageTk.PhotoImage(final_img)
         panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
         panelC.image = final_img1
@@ -116,15 +111,13 @@ def texturedpencil():
     global final_img
     ts=tsk.texturedpencil(image)
     final_img=Image.fromarray(ts)
-    # final_img = en.texture_enhancement(final_im)
     final_img1=ImageTk.PhotoImage(final_img)
     panelB = Label(master=mainbar,image=final_img1,borderwidth=5,relief="sunken")
     panelB.image = final_img1
     panelB.grid(row=3,column=4,padx=20,pady=20)
     def enhanced():
-        ts = tsk.texturedpencil(image)
-        final_im = Image.fromarray(ts)
-        final_img = en.texture_enhancement(final_im)
+        global final_img
+        final_img = en.texture_enhancement(final_img)
         final_img1 = ImageTk.PhotoImage(final_img)
         panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
         panelC.image = final_img1
@@ -140,15 +133,13 @@ def watercolor():
     global final_img
     wcolor= wat.oil_sketch(image)
     final_img= Image.fromarray(wcolor)
-    # final_img = en.water_enhancement(final_im)
     final_img1= ImageTk.PhotoImage(final_img)
     panelB = Label(master=mainbar,image=final_img1, borderwidth=5, relief="sunken")
     panelB.image = final_img1
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
     def enhanced():
-        wcolor = wat.oil_sketch(image)
-        final_im = Image.fromarray(wcolor)
-        final_img = en.water_enhancement(final_im)
+        global final_img
+        final_img = en.water_enhancement(final_img)
         final_img1 = ImageTk.PhotoImage(final_img)
         panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
         panelC.image = final_img1
