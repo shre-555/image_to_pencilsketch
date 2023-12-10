@@ -76,7 +76,7 @@ def colourpencil():
     def enhanced():
         cps = cpsk.colour_sketch(image)
         final_im = Image.fromarray(cps)
-        final_img = en.pencil_enhancement(final_im)
+        final_img = en.colour_enhancement(final_im)
         final_img1 = ImageTk.PhotoImage(final_img)
         panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
         panelC.image = final_img1
@@ -100,7 +100,7 @@ def pencil():
     def enhanced():
         ps = psk.pencil(image)
         final_im = Image.fromarray(ps)
-        final_img = en.colour_enhancement(final_im)
+        final_img = en.pencil_enhancement(final_im)
         final_img1 = ImageTk.PhotoImage(final_img)
         panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
         panelC.image = final_img1
