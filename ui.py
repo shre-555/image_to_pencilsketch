@@ -32,7 +32,7 @@ pick_for_me= None
 final_img= None
 
 def upload():
-    global panelA, panelB, image, colour_button, pencil_button, watercolor_button
+    global panelA, panelB, image, colour_button, pencil_button, watercolor_button, panelC
     f_types = [('Jpg Files', '*.jpg'),('PNG Files','*.png')] 
     path = filedialog.askopenfilename(filetypes=f_types)
 
@@ -66,59 +66,99 @@ def upload():
 def colourpencil():
     global final_img
     cps= cpsk.colour_sketch(image)
-    final_im= Image.fromarray(cps)
-    final_img = en.colour_enhancement(final_im)
+    final_img= Image.fromarray(cps)
+    # final_img = en.colour_enhancement(final_im)
     #final_img= Image.fromarray(cps)
     final_img1= ImageTk.PhotoImage(final_img)
     panelB = Label(master=mainbar,image=final_img1, borderwidth=5, relief="sunken")
     panelB.image = final_img1
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
+    def enhanced():
+        cps = cpsk.colour_sketch(image)
+        final_im = Image.fromarray(cps)
+        final_img = en.pencil_enhancement(final_im)
+        final_img1 = ImageTk.PhotoImage(final_img)
+        panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
+        panelC.image = final_img1
+        panelC.grid(row=3, column=4, padx=20, pady=20)
     text= ctk.CTkLabel(mainbar,text='Colour Pencil Sketch', font=my_font1,fg_color="#212121",width=300)
     text.grid(row= 4, column=4 , padx=20, pady=20)
+    enhance_button = ctk.CTkButton(mainbar, text='Enhance', command=enhanced)
+    enhance_button.grid(row=5, column=4, padx=20, pady=20, sticky="nsew")
     download_button=ctk.CTkButton(mainbar, text='Download', command = downloading)
-    download_button.grid(row= 5, column=4 , padx=20, pady=20, sticky="nsew")
+    download_button.grid(row= 6, column=4 , padx=20, pady=20, sticky="nsew")
 
 def pencil():
     global final_img
     ps= psk.pencil(image)
-    final_im= Image.fromarray(ps)
-    final_img= en.pencil_enhancement(final_im)
+    final_img= Image.fromarray(ps)
+    # final_img= en.pencil_enhancement(final_im)
     final_img1= ImageTk.PhotoImage(final_img)
     panelB = Label(master=mainbar,image=final_img1, borderwidth=5, relief="sunken")
     panelB.image = final_img1
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
+    def enhanced():
+        ps = psk.pencil(image)
+        final_im = Image.fromarray(ps)
+        final_img = en.colour_enhancement(final_im)
+        final_img1 = ImageTk.PhotoImage(final_img)
+        panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
+        panelC.image = final_img1
+        panelC.grid(row=3, column=4, padx=20, pady=20)
     text= ctk.CTkLabel(mainbar,text='Pencil Sketch', font=my_font1,fg_color="#212121", width=300)
     text.grid(row= 4, column=4 , padx=20, pady=20)
+    enhance_button = ctk.CTkButton(mainbar, text='Enhance', command=enhanced)
+    enhance_button.grid(row=5, column=4, padx=20, pady=20, sticky="nsew")
     download_button=ctk.CTkButton(mainbar, text='Download', command = downloading)
-    download_button.grid(row= 5, column=4 , padx=20, pady=20, sticky="nsew")
+    download_button.grid(row= 6, column=4 , padx=20, pady=20, sticky="nsew")
 
 def texturedpencil():
     global final_img
     ts=tsk.texturedpencil(image)
-    final_im=Image.fromarray(ts)
-    final_img = en.texture_enhancement(final_im)
+    final_img=Image.fromarray(ts)
+    # final_img = en.texture_enhancement(final_im)
     final_img1=ImageTk.PhotoImage(final_img)
     panelB = Label(master=mainbar,image=final_img1,borderwidth=5,relief="sunken")
     panelB.image = final_img1
     panelB.grid(row=3,column=4,padx=20,pady=20)
+    def enhanced():
+        ts = tsk.texturedpencil(image)
+        final_im = Image.fromarray(ts)
+        final_img = en.texture_enhancement(final_im)
+        final_img1 = ImageTk.PhotoImage(final_img)
+        panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
+        panelC.image = final_img1
+        panelC.grid(row=3, column=4, padx=20, pady=20)
     text=ctk.CTkLabel(mainbar,text="Textured Sketch",font=my_font1,fg_color="#212121",width=300)
     text.grid(row=4,column=4,padx=20,pady=20)
+    enhance_button = ctk.CTkButton(mainbar, text='Enhance', command=enhanced)
+    enhance_button.grid(row=5, column=4, padx=20, pady=20, sticky="nsew")
     download_button=ctk.CTkButton(mainbar, text='Download', command = downloading)
-    download_button.grid(row= 5, column=4 , padx=20, pady=20, sticky="nsew")
+    download_button.grid(row= 6, column=4 , padx=20, pady=20, sticky="nsew")
 
 def watercolor():
     global final_img
     wcolor= wat.oil_sketch(image)
-    final_im= Image.fromarray(wcolor)
-    final_img = en.water_enhancement(final_im)
+    final_img= Image.fromarray(wcolor)
+    # final_img = en.water_enhancement(final_im)
     final_img1= ImageTk.PhotoImage(final_img)
     panelB = Label(master=mainbar,image=final_img1, borderwidth=5, relief="sunken")
     panelB.image = final_img1
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
+    def enhanced():
+        wcolor = wat.oil_sketch(image)
+        final_im = Image.fromarray(wcolor)
+        final_img = en.water_enhancement(final_im)
+        final_img1 = ImageTk.PhotoImage(final_img)
+        panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
+        panelC.image = final_img1
+        panelC.grid(row=3, column=4, padx=20, pady=20)
     text= ctk.CTkLabel(mainbar,text='Watercolor', font=my_font1,fg_color="#212121",width=300)
     text.grid(row= 4, column=4 , padx=20, pady=20)
+    enhance_button = ctk.CTkButton(mainbar, text='Enhance', command=enhanced)
+    enhance_button.grid(row=5, column=4, padx=20, pady=20, sticky="nsew")
     download_button=ctk.CTkButton(mainbar, text='Download', command = downloading)
-    download_button.grid(row= 5, column=4 , padx=20, pady=20, sticky="nsew")
+    download_button.grid(row= 6, column=4 , padx=20, pady=20, sticky="nsew")
 
 def pick():
     sketch_list=[colourpencil, pencil, texturedpencil, watercolor]
