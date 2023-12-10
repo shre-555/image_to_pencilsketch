@@ -36,30 +36,35 @@ def upload():
     f_types = [('Jpg Files', '*.jpg'),('PNG Files','*.png')] 
     path = filedialog.askopenfilename(filetypes=f_types)
 
-    is_enabled = True
-    
-    image = cv2.imread(path) #reads image from path and converts to an array
-    
-    image = cv2.resize(image, (500,500))
+    try:
 
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    image1 = Image.fromarray(image)
+        is_enabled = True
+        
+        image = cv2.imread(path) #reads image from path and converts to an array
+        
+        image = cv2.resize(image, (500,500))
 
-    image1 = ImageTk.PhotoImage(image1)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image1 = Image.fromarray(image)
 
-    panelA = Label(master=mainbar,image=image1, borderwidth=5, relief="sunken")
-    panelA.image = image1
-    panelA.grid(row= 3, column=0 , padx=20, pady=20)
-    text= ctk.CTkLabel(mainbar,text='Original Image', font=my_font1)
-    text.grid(row= 4, column=0, padx=20, pady=20)
+        image1 = ImageTk.PhotoImage(image1)
 
-    colour_button.configure(state="normal")
-    pencil_button.configure(state="normal")
-    textured_button.configure(state="normal")
-    watercolor_button.configure(state="normal")
-    pick_for_me.configure(state="normal")
+        panelA = Label(master=mainbar,image=image1, borderwidth=5, relief="sunken")
+        panelA.image = image1
+        panelA.grid(row= 3, column=0 , padx=20, pady=20)
+        text= ctk.CTkLabel(mainbar,text='Original Image', font=my_font1)
+        text.grid(row= 4, column=0, padx=20, pady=20)
 
-    return image
+        colour_button.configure(state="normal")
+        pencil_button.configure(state="normal")
+        textured_button.configure(state="normal")
+        watercolor_button.configure(state="normal")
+        pick_for_me.configure(state="normal")
+
+        return image
+
+    except:
+        print("File upload cancelled")
 
 
 
