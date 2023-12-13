@@ -78,7 +78,7 @@ def colourpencil():
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
     def enhanced():
         global final_img
-        final_img = en.colour_enhancement(final_img)
+        final_img = en.enhance_image(final_img, sharpness=4.5, contrast=5, brightness=0.8, color=1.5)
         final_img1 = ImageTk.PhotoImage(final_img)
         panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
         panelC.image = final_img1
@@ -100,7 +100,7 @@ def pencil():
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
     def enhanced():
         global final_img
-        final_img = en.pencil_enhancement(final_img)
+        final_img = en.enhance_image(final_img, sharpness=6, contrast=2.5, brightness=0.8, color=1)
         final_img1 = ImageTk.PhotoImage(final_img)
         panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
         panelC.image = final_img1
@@ -122,7 +122,7 @@ def texturedpencil():
     panelB.grid(row=3,column=4,padx=20,pady=20)
     def enhanced():
         global final_img
-        final_img = en.texture_enhancement(final_img)
+        final_img = en.enhance_image(final_img, sharpness=3, contrast=1.5, brightness=1.7, color=1.5)
         final_img1 = ImageTk.PhotoImage(final_img)
         panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
         panelC.image = final_img1
@@ -144,7 +144,7 @@ def watercolor():
     panelB.grid(row= 3, column=4 , padx=20, pady=20)
     def enhanced():
         global final_img
-        final_img = en.water_enhancement(final_img)
+        final_img = en.enhance_image(final_img, sharpness=1.1, contrast=1.1, brightness= 1, color = 1)
         final_img1 = ImageTk.PhotoImage(final_img)
         panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
         panelC.image = final_img1
