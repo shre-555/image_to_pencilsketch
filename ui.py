@@ -32,7 +32,7 @@ pick_for_me= None
 final_img= None
 
 def upload():
-    global panelA, panelB, image, colour_button, pencil_button, watercolor_button, panelC
+    global panelA, panelB, image, colour_button, pencil_button, watercolor_button
     f_types = [('Jpg Files', '*.jpg'),('PNG Files','*.png')] 
     path = filedialog.askopenfilename(filetypes=f_types)
 
@@ -80,9 +80,9 @@ def colourpencil():
         global final_img
         final_img = en.enhance_image(final_img, sharpness=4.5, contrast=5, brightness=0.8, color=1.5)
         final_img1 = ImageTk.PhotoImage(final_img)
-        panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
-        panelC.image = final_img1
-        panelC.grid(row=3, column=4, padx=20, pady=20)
+        panelB = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
+        panelB.image = final_img1
+        panelB.grid(row=3, column=4, padx=20, pady=20)
     text= ctk.CTkLabel(mainbar,text='Colour Pencil Sketch', font=my_font1,fg_color="#212121",width=300)
     text.grid(row= 4, column=4 , padx=20, pady=20)
     enhance_button = ctk.CTkButton(mainbar, text='Enhance', command=enhanced)
@@ -102,9 +102,9 @@ def pencil():
         global final_img
         final_img = en.enhance_image(final_img, sharpness=6, contrast=2.5, brightness=0.8, color=1)
         final_img1 = ImageTk.PhotoImage(final_img)
-        panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
-        panelC.image = final_img1
-        panelC.grid(row=3, column=4, padx=20, pady=20)
+        panelB = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
+        panelB.image = final_img1
+        panelB.grid(row=3, column=4, padx=20, pady=20)
     text= ctk.CTkLabel(mainbar,text='Pencil Sketch', font=my_font1,fg_color="#212121", width=300)
     text.grid(row= 4, column=4 , padx=20, pady=20)
     enhance_button = ctk.CTkButton(mainbar, text='Enhance', command=enhanced)
@@ -124,9 +124,9 @@ def texturedpencil():
         global final_img
         final_img = en.enhance_image(final_img, sharpness=3, contrast=1.5, brightness=1.7, color=1.5)
         final_img1 = ImageTk.PhotoImage(final_img)
-        panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
-        panelC.image = final_img1
-        panelC.grid(row=3, column=4, padx=20, pady=20)
+        panelB = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
+        panelB.image = final_img1
+        panelB.grid(row=3, column=4, padx=20, pady=20)
     text=ctk.CTkLabel(mainbar,text="Textured Sketch",font=my_font1,fg_color="#212121",width=300)
     text.grid(row=4,column=4,padx=20,pady=20)
     enhance_button = ctk.CTkButton(mainbar, text='Enhance', command=enhanced)
@@ -146,9 +146,9 @@ def watercolor():
         global final_img
         final_img = en.enhance_image(final_img, sharpness=1.1, contrast=1.1, brightness= 1, color = 1)
         final_img1 = ImageTk.PhotoImage(final_img)
-        panelC = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
-        panelC.image = final_img1
-        panelC.grid(row=3, column=4, padx=20, pady=20)
+        panelB = Label(master=mainbar, image=final_img1, borderwidth=5, relief="sunken")
+        panelB.image = final_img1
+        panelB.grid(row=3, column=4, padx=20, pady=20)
     text= ctk.CTkLabel(mainbar,text='Watercolor', font=my_font1,fg_color="#212121",width=300)
     text.grid(row= 4, column=4 , padx=20, pady=20)
     enhance_button = ctk.CTkButton(mainbar, text='Enhance', command=enhanced)
