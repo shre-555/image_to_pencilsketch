@@ -2,7 +2,7 @@ import numpy as np
 import imageio
 import scipy.ndimage
 import cv2
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 def rgb2gray(rgb):
 	return np.dot(rgb[..., :3], [0.2989, 0.5870, .1140])

@@ -176,7 +176,7 @@ def downloading():
             tk.messagebox.showinfo("Save Complete", f"Image saved successfully at:\n{save_path}")
     
 
-mainbar=ctk.CTkScrollableFrame(master=root, width=700, orientation="horizontal")
+mainbar=ctk.CTkScrollableFrame(master=root, width=700, orientation="vertical")
 l1 = ctk.CTkLabel(mainbar,text='Image to Sketch Converter',width=30,font=('Constantia', 30, 'bold'))  
 l1.grid(row=1,column=0,sticky="nsew",padx=10, pady=30)
 b1 = ctk.CTkButton(mainbar, text='Upload', width=300,command =upload)
