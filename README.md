@@ -1,4 +1,7 @@
 Image to Sketch Converter
+=========================
+
+## Background
 
 - Image is a picture or other representation of a person or thing
 - Sketch is a rough drawing representing the chief features of an object
@@ -11,3 +14,9 @@ Image to Sketch Converter
     - Edge detection
     - Blurring/ smoothing
     - Converting to grayscale
+
+## Features
+
+## Steps to run
+
+## Sample Output Screenshots
