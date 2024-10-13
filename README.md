@@ -16,7 +16,15 @@ Image to Sketch Converter
     - Converting to grayscale
 
 ## Features
+- Transforms images into various types of sketches including:
+    - Pencil Sketch
+    - Color Pencil Sketch
+    - Textured Sketch
+    - Oil Painting
+- Our intuitive UI ensures easy image upload and result download.
 
 ## Steps to run
+Run ui.py 
 
 ## Sample Output Screenshots
+
