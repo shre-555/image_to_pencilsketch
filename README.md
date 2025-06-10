@@ -26,5 +26,4 @@ Image to Sketch Converter
 ## Steps to run
 Run ui.py 
 
-## Sample Output Screenshots
 
